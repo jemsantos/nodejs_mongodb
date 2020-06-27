@@ -10,13 +10,13 @@ MongoClient.connect(servidor, function (erro, db) {
 
     var colecao = db.collection("usuarios");
 
-    var filtro = { ativo: true };
+    var filtro = { login: "joel" };
     
-    colecao.deleteMany(filtro, function (erro, resultado) {
+    colecao.deleteOne(filtro, function (erro, resultado) {
         if (erro)
-            console.log("Erro ao remover documentos: " + erro);
+            console.log("Erro ao remover documento: " + erro);
         else
-            console.log("Documentos removidos com sucesso");
+            console.log("Documento removido com sucesso");
     });
 
     db.close();
