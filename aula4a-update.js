@@ -1,3 +1,4 @@
+
 var MongoClient = require('mongodb').MongoClient;
 
 var servidor = 'mongodb://localhost:27017/db_devmedia';
@@ -8,17 +9,20 @@ MongoClient.connect(servidor, function (erro, db) {
     else
         console.log("Conexão estabelecida com sucesso.");
 
+    var usuario = {
+        login: "maria",
+        senha: "123456789"
+    };
+
     var colecao = db.collection("usuarios");
 
-    var filtro = { };
-    
-    var alteracao = { $set : {ativo: true} };
+    var filtro = { login: "maria"};
 
-    colecao.updateMany(filtro, alteracao, function (erro, resultado) {
+    colecao.updateOne(filtro, usuario, function (erro, resultado) {
         if (erro)
-            console.log("Erro ao atualizar documentos: " + erro);
+            console.log("Erro ao atualizar documento: " + erro);
         else
-            console.log("Documentos atualizados com sucesso");
+            console.log("Documento atualizado com sucesso");
     });
 
     db.close();
