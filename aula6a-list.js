@@ -10,11 +10,8 @@ MongoClient.connect(servidor, function (erro, db) {
 
     var colecao = db.collection("topicos");
 
-    var indice = { conteudo: "text" };
-    
-    colecao.createIndex(indice);
-
-    var filtro = {$text : { $search: "Eclipse" }};
+    // var filtro = { };
+    var filtro = { _id: 1 };
     
     colecao.find(filtro).toArray(function (erro, documentos) {
         documentos.forEach(function(doc) {
